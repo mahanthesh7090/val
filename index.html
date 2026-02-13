@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinni Muddu</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;600&display=swap");
+
+        :root {
+            --bg: #e0d4fc;
+            --bg-2: #c4b5fd;
+            --card: #ffffff;
+            --ink: #2e1065;
+            --accent: #8b5cf6;
+            --accent-dark: #7c3aed;
+            --shadow: rgba(46, 16, 101, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(800px 800px at 50% 100%, #f3e8ff 0%, transparent 60%),
+                radial-gradient(600px 600px at 0% 0%, #ddd6fe 0%, transparent 50%),
+                linear-gradient(135deg, #f5f3ff, #ede9fe);
+            font-family: "Manrope", system-ui, sans-serif;
+            color: var(--ink);
+        }
+
+        .container {
+            width: min(560px, 92vw);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 26px;
+            padding: 28px;
+            box-shadow:
+                0 28px 70px var(--shadow),
+                0 10px 20px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container::before,
+        .container::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container::before {
+            top: -100px;
+            right: -50px;
+        }
+
+        .container::after {
+            bottom: -80px;
+            left: -60px;
+        }
+
+        .header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            margin: 0 0 8px 0;
+            font-family: "Fraunces", serif;
+            font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+            letter-spacing: -0.5px;
+            color: #4c1d95;
+            text-shadow: 0 2px 4px rgba(139, 92, 246, 0.1);
+        }
+
+        .header p {
+            margin: 0;
+            color: #5b21b6;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .image-container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            margin: 10px 0 24px;
+        }
+
+        .proposal-img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 20px;
+            filter: drop-shadow(0 10px 25px rgba(139, 92, 246, 0.25));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .buttons {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-yes {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-yes:hover {
+            background: var(--accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-no {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .btn-no:hover {
+            background: #ddd6fe;
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            position: relative;
+            z-index: 1;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: #6d28d9;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        /* Music Button Style */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            background: #fff;
+            box-shadow: 0 8px 16px rgba(139, 92, 246, 0.35);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="./song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="music-btn" class="music-control" onclick="toggleMusic()">
+        🎵
+    </button>
+
+    <div id="main-screen" class="container">
+        <div class="header">
+            <h1>Will you be my Valentine?</h1>
+            <p>Your are already my wife but i want to ask you again...
+            </p>
+        </div>
+
+        <div class="image-container">
+            <img src="./DSC_0884.JPG" alt="Boy proposing to girl" class="proposal-img">
+        </div>
+
+        <div class="buttons">
+            <button class="btn-yes" onclick="showYesPage()">Yes, I'd love to!</button>
+            <button class="btn-no" onclick="showNoPage()">NO</button>
+        </div>
+
+        <div class="footer">
+            Made with 💜 just for you
+        </div>
+    </div>
+
+    <!-- Yes Screen -->
+    <div id="yes-screen" class="container" style="display: none;">
+        <div class="header">
+            <h1>Modve Agona Ba 💖</h1>
+            <p>Love Madiddu Saaku</p>
+        </div>
+        <div class="image-container">
+            <!-- Placeholder for Yes image -->
+            <img src="./DSC_0868.JPG" alt="Happy Couple" class="proposal-img">
+        </div>
+        <div class="footer">
+            Love you forever! 💜
+        </div>
+    </div>
+
+    <!-- No Screen -->
+    <div id="no-screen" class="container" style="display: none;">
+        <div class="header">
+            <h1>Yake Kobba!..😤🤬</h1>
+            <p>Muchkondu YES Annu...</p>
+        </div>
+        <div class="image-container">
+            <!-- Placeholder for No image -->
+            <img src="./DSC_0879.JPG" alt="Sad Face" class="proposal-img">
+        </div>
+        <div class="buttons">
+            <button class="btn-yes" onclick="showYesPage()">Yes</button>
+        </div>
+        <div class="footer">
+            Illa andre ethakond hogthini💜
+        </div>
+    </div>
+
+    <script>
+        function showYesPage() {
+            document.getElementById('main-screen').style.display = 'none';
+            document.getElementById('no-screen').style.display = 'none';
+            document.getElementById('yes-screen').style.display = 'block';
+            playMusic();
+        }
+
+        function showNoPage() {
+            document.getElementById('main-screen').style.display = 'none';
+            document.getElementById('yes-screen').style.display = 'none';
+            document.getElementById('no-screen').style.display = 'block';
+        }
+
+        // Music Control
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.innerHTML = '🔇';
+                isPlaying = false;
+            } else {
+                music.play();
+                musicBtn.innerHTML = '🎵';
+                isPlaying = true;
+            }
+        }
+
+        function playMusic() {
+            if (!isPlaying) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.innerHTML = '🎵';
+                }).catch(error => {
+                    console.log("Auto-play was prevented. Interaction needed.");
+                });
+            }
+        }
+
+        // Try to autoplay on load (might be blocked by browser)
+        window.addEventListener('load', () => {
+            // Many browsers block autoplay with sound. 
+            // We can try, or just wait for user interaction.
+            // Best practice is to wait for interaction or mute first.
+            // We'll let the user click the button or anywhere else to start.
+            document.body.addEventListener('click', function () {
+                playMusic();
+            }, { once: true });
+        });
+    </script>
+</body>
+
+</html>
